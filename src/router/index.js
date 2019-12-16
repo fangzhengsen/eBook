@@ -1,25 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import epubBook from "./epubBook/index";
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    redirect:'/epubBook'
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
-  {
-    path:'/ebook',
-    name:'ebook',
-    component:()=>import('../Ebook.vue')
-  }
+    ...epubBook
 ]
 
 const router = new VueRouter({

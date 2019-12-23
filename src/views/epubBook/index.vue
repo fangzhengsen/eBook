@@ -17,9 +17,6 @@ export default {
 				epubMenu,
 				epubTitle
 		},
-		created() {
-        console.log('this.test');
-    }
 }
 </script>
 

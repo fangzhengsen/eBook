@@ -16,9 +16,13 @@
         </div>
       </div>
     </transition>
+    <Ebook-header></Ebook-header>
     <Ebook-setting-font></Ebook-setting-font>
     <Ebook-setting-font-popup></Ebook-setting-font-popup>
     <Ebook-setting-theme></Ebook-setting-theme>
+    <Ebook-setting-progress></Ebook-setting-progress>
+    <Ebook-slide></Ebook-slide>
+    <Ebook-footer></Ebook-footer>
   </div>
 </template>
 
@@ -27,12 +31,20 @@ import {ebookMixin} from '../../utils/mixin'
 import EbookSettingFont from "./EbookSettingFont";
 import EbookSettingFontPopup from "./EbookSettingFontPopup";
 import EbookSettingTheme from "./EbookSettingTheme";
+import EbookSettingProgress from "./EbookSettingProgress";
+import EbookSlide from "./EbookSlide";
+import EbookHeader from "./EbookHeader";
+import EbookFooter from "./EbookFooter";
   export default {
     mixins:[ebookMixin],
     components:{
       EbookSettingFont,
       EbookSettingFontPopup,
-      EbookSettingTheme
+      EbookSettingTheme,
+      EbookSettingProgress,
+      EbookSlide,
+      EbookHeader,
+      EbookFooter
     },
     methods: {
       showSetting(key) {

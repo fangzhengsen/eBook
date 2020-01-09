@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import book from './modules/epubBook'
+import book from './modules/epubBook';
+import store from './modules/store';
 import getters from './getters'
 import actions from "./actions";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules:{
-    book
-  },
-  getters,
-  actions
+    modules: {
+        book,
+        store
+    },
+    getters,
+    actions
 })

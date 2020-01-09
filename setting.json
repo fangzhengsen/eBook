@@ -1,0 +1,18 @@
+{
+    "explorer.confirmDelete": false,
+    "editor.formatOnSave": true, // 编辑器在保存的时候格式化代码
+    "eslint.autoFixOnSave": true, // eslint在保存的时候格式化代码
+    // 应用eslint格式化的语言种类
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        {
+            "language": "html",
+            "autoFix": true,
+        },
+        {
+            "language": "vue",
+            "autoFix": true,
+        }
+    ]
+}

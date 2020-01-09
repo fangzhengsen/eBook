@@ -1,4 +1,4 @@
-const epubBook={
+const epubBook = {
     state: {
         fileName: '',
         menuVisible: false,

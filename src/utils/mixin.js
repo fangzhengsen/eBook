@@ -1,10 +1,10 @@
-import {mapGetters,mapActions} from 'vuex'
-import {themeList,removeAllCss,addCss,getReadTimeByMinute} from './book'
-import {getBookmark, saveLocation} from "./localStorage";
+import { mapGetters, mapActions } from 'vuex'
+import { themeList, removeAllCss, addCss, getReadTimeByMinute } from './book'
+import { getBookmark, saveLocation } from "./localStorage";
 
 
-export const ebookMixin={
-  computed:{
+export const ebookMixin = {
+  computed: {
     ...mapGetters([
       'fileName',
       'menuVisible',
@@ -29,7 +29,7 @@ export const ebookMixin={
     themeList() {
       return themeList(this)
     },
-    getSectionName(){
+    getSectionName() {
       // let sectionName=null;
       // if(this.section){
       //     const sectionInfo=this.currentBook.section(this.section)
@@ -37,10 +37,10 @@ export const ebookMixin={
       //         sectionName=this.currentBook.navigation.get(sectionInfo.href).label;
       //     }
       // }
-      return this.section?this.navigation[this.section].label:'';
+      return this.section ? this.navigation[this.section].label : '';
     }
   },
-  methods:{
+  methods: {
     ...mapActions([
       'setFileName',
       'setMenuVisible',
@@ -82,48 +82,68 @@ export const ebookMixin={
           break
       }
     },
-    refreshLocation(){
-      const curentLocation=this.currentBook.rendition.currentLocation();
-      if(curentLocation&&curentLocation.start){
-        const startCfi=curentLocation.start.cfi;
-        const progress=this.currentBook.locations.percentageFromCfi(startCfi)
-        this.setProgress(Math.floor(progress*100))
+    refreshLocation() {
+      const curentLocation = this.currentBook.rendition.currentLocation();
+      if (curentLocation && curentLocation.start) {
+        const startCfi = curentLocation.start.cfi;
+        const progress = this.currentBook.locations.percentageFromCfi(startCfi)
+        this.setProgress(Math.floor(progress * 100))
         this.setSection(curentLocation.start.index)
-        saveLocation(this.fileName,startCfi)
-        const bookmark=getBookmark(this.fileName)
-        if(bookmark){
-          if(bookmark.some(item=>item.cfi===startCfi)){
+        saveLocation(this.fileName, startCfi)
+        const bookmark = getBookmark(this.fileName)
+        if (bookmark) {
+          if (bookmark.some(item => item.cfi === startCfi)) {
             this.setIsBookmark(true)
-          }else {
+          } else {
             this.setIsBookmark(false)
           }
-        }else{
+        } else {
           this.setIsBookmark(false)
         }
       }
     },
-    display(target,cb){
-      if(target){
-        this.currentBook.rendition.display(target).then(()=>{
+    display(target, cb) {
+      if (target) {
+        this.currentBook.rendition.display(target).then(() => {
           this.refreshLocation()
-          if(cb) cb();
+          if (cb) cb();
         })
-      }else {
-        this.currentBook.rendition.display().then(()=>{
+      } else {
+        this.currentBook.rendition.display().then(() => {
           this.refreshLocation()
-          if(cb) cb();
+          if (cb) cb();
         });
       }
     },
-    hideTitleAndMenu(){
-      if(this.menuVisible){
+    hideTitleAndMenu() {
+      if (this.menuVisible) {
         this.setSettingVisible(-1)
       }
       this.setMenuVisible(false);
       this.setFontFamilyVisible(false);
     },
-    getReadTimeText(){
-      return this.$t('book.haveRead',[getReadTimeByMinute(this.fileName)])
+    getReadTimeText() {
+      return this.$t('book.haveRead', [getReadTimeByMinute(this.fileName)])
     },
+  }
+}
+
+export const storeHomeMixin = {
+  computed: {
+    ...mapGetters([
+      'offsetY',
+      'hotSearchOffsetY',
+      'flapCardVisible'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'setOffsetY',
+      'setHotSearchOffsetY',
+      'setFlapCardVisible'
+    ]),
+    showBookDetail(book) {
+      gotoBookDetail(this, book)
+    }
   }
 }

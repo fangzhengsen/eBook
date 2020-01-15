@@ -1,12 +1,12 @@
 import epubBook from '../../views/epubBook/index'
-const eBook=[
+const eBook = [
     {
-        path: '/epubBook',
+        path: '/ebook',
         component: epubBook,
-        children:[
+        children: [
             {
-                path:':filename',
-                component:()=>import('../../components/epubBook/EbookReader.vue')
+                path: ':filename',
+                component: () => import('../../components/epubBook/EbookReader.vue')
             }
         ]
     },

@@ -58,21 +58,19 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
-      home().then(res => {
-        if (res && res.status === 200) {
-          const data = res.data;
-          const randomIndex = Math.floor(Math.random() * data.random.length);
-          this.random = data.random[randomIndex];
-          this.banner = data.banner;
-          this.guessYouLike = data.guessYouLike;
-          this.recommend = data.recommend;
-          this.featured = data.featured;
-          this.categoryList = data.categoryList;
-          this.categories = data.categories;
-        }
-      });
-    }, 2500);
+    home().then(res => {
+      if (res && res.status === 200) {
+        const data = res.data;
+        const randomIndex = Math.floor(Math.random() * data.random.length);
+        this.random = data.random[randomIndex];
+        this.banner = data.banner;
+        this.guessYouLike = data.guessYouLike;
+        this.recommend = data.recommend;
+        this.featured = data.featured;
+        this.categoryList = data.categoryList;
+        this.categories = data.categories;
+      }
+    });
   },
   methods: {
     onScroll(offsetY) {

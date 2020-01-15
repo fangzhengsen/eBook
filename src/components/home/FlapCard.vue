@@ -94,9 +94,9 @@ export default {
   methods: {
     categoryText() {
       if (this.data) {
-        categoryText(this.data.category, this);
-        this.stopAnimation();
-        this.runBookCardAnimation = true;
+        return categoryText(this.data.category, this);
+      } else {
+        return "";
       }
     },
     close() {
@@ -115,6 +115,10 @@ export default {
         this.startFlapCardAnimation();
         this.startPointAnimation();
       }, 300);
+      this.timeout2 = setTimeout(() => {
+        this.stopAnimation();
+        this.runBookCardAnimation = true;
+      }, 2500);
     },
     semiCircleStyle(item, dir) {
       return {
@@ -200,6 +204,9 @@ export default {
         this.rotate(index, "front");
         this.rotate(index, "back");
       });
+      this.runBookCardAnimation = false;
+      this.runFlapCardAnimation = false;
+      this.runPointAnimation = false;
     },
     prepare() {
       const backFlapCard = this.flapCardList[this.back];
@@ -220,6 +227,9 @@ export default {
       }
       if (this.timeout) {
         clearTimeout(this.timeout);
+      }
+      if (this.timeout2) {
+        clearTimeout(this.timeout2);
       }
       this.reset();
     }

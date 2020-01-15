@@ -48,6 +48,14 @@ export default {
     };
   },
   methods: {
+    search() {
+      this.$router.push({
+        path: "/store/list",
+        query: {
+          keyword: this.searchText
+        }
+      });
+    },
     showHotSearch() {
       this.hideTitle();
       this.hideShadow();

@@ -175,6 +175,7 @@ export const categoryList = {
   'Statistics': 22
 }
 
+
 export function getCategoryName(id) {
   switch (id) {
     case 1:

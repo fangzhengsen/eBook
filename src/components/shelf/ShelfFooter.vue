@@ -23,7 +23,7 @@
 import { storeShelfMixin } from "../../utils/mixin";
 import { saveBookShelf, removeLocalStorage } from "../../utils/localStorage";
 import { download } from "../../api/store";
-// import { removeLocalForage } from '../../utils/localForage'
+import { removeLocalForage } from "../../utils/localForage";
 
 export default {
   mixins: [storeShelfMixin],
@@ -122,7 +122,7 @@ export default {
     removeBook(book) {
       return new Promise((resolve, reject) => {
         removeLocalStorage(`${book.categoryText}/${book.fileName}-info`);
-        // removeLocalForage(`${book.fileName}`)
+        removeLocalForage(`${book.fileName}`);
         resolve(book);
       });
     },

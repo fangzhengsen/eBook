@@ -24,17 +24,29 @@ import {
   saveTheme,
   getLocation
 } from "../../utils/localStorage";
+import { getLocalForage } from "../../utils/localForage";
 import Epub from "epubjs";
 import { flatten } from "../../utils/book";
 export default {
   name: "ebookReader",
   mixins: [ebookMixin],
   mounted() {
-    this.$store
-      .dispatch("setFileName", this.$route.params.filename.split("|").join("/"))
-      .then(() => {
-        this.initEpub();
-      });
+    const books = this.$route.params.filename.split("|");
+    const filename = books[1];
+    getLocalForage(filename, (err, blob) => {
+      if (!err && blob) {
+        console.log("找到离线缓存电子书");
+        this.setFileName(books.join("/")).then(() => {
+          this.initEpub(blob);
+        });
+      } else {
+        console.log("在线阅读电子书");
+        this.setFileName(books.join("/")).then(() => {
+          const url = `${process.env.VUE_APP_EPUB_URL}/${this.fileName}.epub`;
+          this.initEpub(url);
+        });
+      }
+    });
   },
   methods: {
     // 1 - 鼠标进入
@@ -208,8 +220,7 @@ export default {
         this.setNavigation(navItem);
       });
     },
-    initEpub() {
-      const url = `${process.env.VUE_APP_EPUB_URL}/${this.fileName}.epub`;
+    initEpub(url) {
       this.book = new Epub(url);
       this.setCurrentBook(this.book);
       this.initRendition();

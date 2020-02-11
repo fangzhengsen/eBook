@@ -12,6 +12,7 @@
     "cluster": "^0.7.7",
     "core-js": "^3.4.3",
     "epubjs": "0.3.71",
+    "localforage": "^1.7.3",
     "vue": "^2.6.10",
     "vue-create-api": "^0.2.3",
     "vue-i18n": "^8.15.3",

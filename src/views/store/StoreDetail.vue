@@ -77,10 +77,10 @@ import Scroll from "../../components/common/Scroll";
 import Toast from "../../components/common/Toast";
 import { detail } from "../../api/store";
 import { px2rem, realPx } from "../../utils/utils";
-// import { getLocalForage } from '../../utils/localForage'
+import { getLocalForage } from "../../utils/localForage";
 import { removeFromBookShelf, addToShelf } from "../../utils/store";
 import { storeShelfMixin } from "../../utils/mixin";
-// import { getBookShelf, saveBookShelf } from "../../utils/localStorage";
+import { getBookShelf, saveBookShelf } from "../../utils/localStorage";
 import Epub from "epubjs";
 
 global.ePub = Epub;
@@ -200,28 +200,28 @@ export default {
       });
     },
     // 听书
-    // trialListening() {
-    //   // 如果电子书已经缓存，从IndexedDB中读取电子书
-    //   getLocalForage(this.bookItem.fileName, (err, blob) => {
-    //     if (!err && blob && blob instanceof Blob) {
-    //       this.$router.push({
-    //         path: "/store/speaking",
-    //         query: {
-    //           fileName: this.bookItem.fileName
-    //         }
-    //       });
-    //     } else {
-    //       // 如果没有缓存，直接跳转到听书页面
-    //       this.$router.push({
-    //         path: "/store/speaking",
-    //         query: {
-    //           fileName: this.bookItem.fileName,
-    //           opf: this.opf
-    //         }
-    //       });
-    //     }
-    //   });
-    // },
+    trialListening() {
+      // 如果电子书已经缓存，从IndexedDB中读取电子书
+      getLocalForage(this.bookItem.fileName, (err, blob) => {
+        if (!err && blob && blob instanceof Blob) {
+          this.$router.push({
+            path: "/store/speaking",
+            query: {
+              fileName: this.bookItem.fileName
+            }
+          });
+        } else {
+          // 如果没有缓存，直接跳转到听书页面
+          this.$router.push({
+            path: "/store/speaking",
+            query: {
+              fileName: this.bookItem.fileName,
+              opf: this.opf
+            }
+          });
+        }
+      });
+    },
     // 通过章节阅读电子书
     read(item) {
       this.$router.push({
@@ -404,8 +404,8 @@ export default {
             color: #333;
           }
         }
-        #preview {
-        }
+        // #preview {
+        // }
         .book-detail-content-item-wrapper {
           .book-detail-content-item {
             padding: px2rem(15) 0;

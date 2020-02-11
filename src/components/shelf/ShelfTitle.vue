@@ -32,7 +32,7 @@
 <script>
 import { storeShelfMixin } from "../../utils/mixin";
 import { clearLocalStorage, saveBookShelf } from "../../utils/localStorage";
-// import { clearLocalForage } from '../../utils/localForage'
+import { clearLocalForage } from "../../utils/localForage";
 
 export default {
   mixins: [storeShelfMixin],
@@ -184,11 +184,11 @@ export default {
     },
     clearCache() {
       clearLocalStorage();
-      // clearLocalForage();
+      clearLocalForage();
       this.setShelfList([]);
       this.setShelfSelected([]);
       this.getShelfList();
-      // this.simpleToast(this.$t("shelf.clearCacheSuccess"));
+      this.simpleToast(this.$t("shelf.clearCacheSuccess"));
     }
   }
 };

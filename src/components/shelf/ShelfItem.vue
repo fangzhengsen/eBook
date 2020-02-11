@@ -13,6 +13,7 @@
     <div
       class="icon-selected"
       :class="{'is-selected': data.selected}"
+      +
       v-show="isEditMode && data.type === 1"
     ></div>
   </div>
@@ -49,13 +50,15 @@ export default {
   methods: {
     onItemClick() {
       if (this.isEditMode) {
-        this.data.selected = !this.data.selected;
-        if (this.data.selected) {
-          this.shelfSelected.pushWithoutDuplicate(this.data);
-        } else {
-          this.setShelfSelected(
-            this.shelfSelected.filter(item => item.id !== this.data.id)
-          );
+        if (this.data.type !== 3) {
+          this.data.selected = !this.data.selected;
+          if (this.data.selected) {
+            this.shelfSelected.pushWithoutDuplicate(this.data);
+          } else {
+            this.setShelfSelected(
+              this.shelfSelected.filter(item => item.id !== this.data.id)
+            );
+          }
         }
       } else {
         if (this.data.type === 1) {

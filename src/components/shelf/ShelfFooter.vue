@@ -120,7 +120,7 @@ export default {
       );
     },
     removeBook(book) {
-      return new Promise((resolve, reject) => {
+      return new Promise(resolve => {
         removeLocalStorage(`${book.categoryText}/${book.fileName}-info`);
         removeLocalForage(`${book.fileName}`);
         resolve(book);

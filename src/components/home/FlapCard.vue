@@ -59,7 +59,7 @@
 <script>
 import { storeHomeMixin } from "../../utils/mixin";
 import { flapCardList } from "../../utils/store";
-import { getCategoryName, categoryText } from "../../utils/store";
+import { categoryText } from "../../utils/store";
 export default {
   mixins: [storeHomeMixin],
   props: {

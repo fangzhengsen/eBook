@@ -3,7 +3,7 @@ import localForage from 'localforage'
 export function setLocalForage(key, data, cb, cb2) {
   localForage.setItem(key, data).then((value) => {
     if (cb) cb(value)
-  }).catch(function(err) {
+  }).catch(function (err) {
     if (cb2) cb2(err)
   })
 }
@@ -15,17 +15,17 @@ export function getLocalForage(key, cb) {
 }
 
 export function removeLocalForage(key, cb, cb2) {
-  localForage.removeItem(key).then(function() {
+  localForage.removeItem(key).then(function () {
     if (cb) cb()
-  }).catch(function(err) {
+  }).catch(function (err) {
     if (cb2) cb2(err)
   })
 }
 
 export function clearLocalForage(cb, cb2) {
-  localForage.clear().then(function() {
+  localForage.clear().then(function () {
     if (cb) cb()
-  }).catch(function(err) {
+  }).catch(function (err) {
     if (cb2) cb2(err)
   })
 }
@@ -34,20 +34,27 @@ export function lengthLocalForage(cb) {
   localForage.length().then(
     numberOfKeys => {
       if (cb) cb(numberOfKeys)
+      alert(numberOfKeys)
       // console.log(numberOfKeys)
-    }).catch(function(err) {
-      if (err) {}
-    // console.log(err)
-  })
+    }).catch(function (err) {
+      if (err) {
+        alert(err)
+      }
+      // console.log(err)
+    })
 }
 
 export function iteratorLocalForage() {
-  localForage.iterate(function(value, key, iterationNumber) {
+  localForage.iterate(function (value, key, iterationNumber) {
+    alert([key, value, iterationNumber])
     // console.log([key, value])
-  }).then(function() {
+  }).then(function () {
+    alert('Iteration has completed')
     // console.log('Iteration has completed')
-  }).catch(function(err) {
-    if (err) {}
+  }).catch(function (err) {
+    if (err) {
+      alert(err)
+    }
     // console.log(err)
   })
 }

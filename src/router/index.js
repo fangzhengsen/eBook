@@ -9,10 +9,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect:'/epubBook'
+    redirect: '/store'
   },
-    ...epubBook,
-    ...store
+  ...epubBook,
+  ...store
 ]
 
 const router = new VueRouter({

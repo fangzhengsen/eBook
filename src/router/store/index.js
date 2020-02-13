@@ -4,7 +4,7 @@ const eBookStore = [
     {
         path: '/store',
         component: store,
-        redirect: '/store/home',
+        redirect: '/store/shelf',
         children: [
             {
                 path: 'home',

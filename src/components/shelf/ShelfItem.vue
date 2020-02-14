@@ -13,7 +13,6 @@
     <div
       class="icon-selected"
       :class="{'is-selected': data.selected}"
-      +
       v-show="isEditMode && data.type === 1"
     ></div>
   </div>
